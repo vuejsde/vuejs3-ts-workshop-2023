@@ -25,9 +25,7 @@ const navigation = ref<NavItem[]>([{
       </li>
     </ul>
     <ul>
-      <li><a href="#">{{ navigation[0].label }}</a></li>
-      <li><a href="#">{{ navigation[1].label }}</a></li>
-      <li><a href="#" role="button">{{ navigation[2].label }}</a></li>
+      <li v-for="item in navigation" :key="item.link"><a :href="item.link">{{ item.label }}</a></li>
     </ul>
   </nav>
 </template>
