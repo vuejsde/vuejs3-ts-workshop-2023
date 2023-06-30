@@ -76,10 +76,15 @@ function onClick() {
   isLoaded.value = true;
 }
 
-const filteredBooks = computed(() => books.value.filter((book) => book.numPages > 300))
+const filteredBooks = computed(() => books.value.filter((book) => book.title.includes(userInput.value)))
+const userInput = ref('');
 </script>
 
 <template>
+  <form>
+    <label for="search">Search</label>
+    <input type="search" id="search" name="search" placeholder="Book title" v-model="userInput">
+  </form>
   <table role="grid">
     <thead>
       <tr>
