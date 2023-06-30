@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
 type Book = {
   id: string;
@@ -75,6 +75,8 @@ function onClick() {
   ]
   isLoaded.value = true;
 }
+
+const filteredBooks = computed(() => books.value.filter((book) => book.numPages > 300))
 </script>
 
 <template>
@@ -86,11 +88,9 @@ function onClick() {
       </tr>
     </thead>
     <tbody>
-      <tr v-for="book in books" :key="book.isbn">
-        <template v-if="book.numPages > 300">
-          <td>{{ book.isbn }}</td>
-          <td>{{ book.title }}</td>
-        </template>
+      <tr v-for="book in filteredBooks" :key="book.isbn">
+        <td>{{ book.isbn }}</td>
+        <td>{{ book.title }}</td>
       </tr>
     </tbody>
   </table>
