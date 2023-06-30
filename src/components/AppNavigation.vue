@@ -1,5 +1,19 @@
 <script setup lang="ts">
-const applicationName = 'Bookmonkey Vue'
+import { ref } from 'vue'
+
+type NavItem = {
+  label: string;
+  link: string;
+}
+
+const applicationName = ref('Bookmonkey API');
+const navigation = ref<NavItem[]>([{
+  label: 'Books', link: '/books',
+}, {
+  label: 'About', link: '/about',
+}, {
+  label: 'Login', link: '/login'
+}])
 </script>
 
 <template>
@@ -8,9 +22,9 @@ const applicationName = 'Bookmonkey Vue'
       <li><strong>{{ applicationName.toUpperCase() }}</strong></li>
     </ul>
     <ul>
-      <li><a href="#">Books</a></li>
-      <li><a href="#">About</a></li>
-      <li><a href="#" role="button">Login</a></li>
+      <li><a href="#">{{ navigation[0].label }}</a></li>
+      <li><a href="#">{{ navigation[1].label }}</a></li>
+      <li><a href="#" role="button">{{ navigation[2].label }}</a></li>
     </ul>
   </nav>
 </template>
