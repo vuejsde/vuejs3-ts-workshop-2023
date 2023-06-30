@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import logo from '../assets/logo.png'
 
 type NavItem = {
@@ -15,13 +15,14 @@ const navigation = ref<NavItem[]>([{
 }, {
   label: 'Login', link: '/login'
 }])
+const transformedApplicationName = computed(() => applicationName.value.toUpperCase())
 </script>
 
 <template>
   <nav>
     <ul>
       <li>
-        <img :src="logo" :alt="applicationName.toUpperCase()" width="300" />
+        <img :src="logo" :alt="transformedApplicationName" width="300" />
       </li>
     </ul>
     <ul>
