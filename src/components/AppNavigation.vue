@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import logo from '../assets/logo.png'
 
 type NavItem = {
   label: string;
@@ -19,7 +20,9 @@ const navigation = ref<NavItem[]>([{
 <template>
   <nav>
     <ul>
-      <li><strong>{{ applicationName.toUpperCase() }}</strong></li>
+      <li>
+        <img :src="logo" :alt="applicationName.toUpperCase()" width="300" />
+      </li>
     </ul>
     <ul>
       <li><a href="#">{{ navigation[0].label }}</a></li>
