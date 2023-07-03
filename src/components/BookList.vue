@@ -14,6 +14,7 @@ type Book = {
   numPages: number;
   cover: string;
   userId: number;
+  read?: boolean;
 }
 
 const books = ref<Book[]>([])
@@ -39,6 +40,13 @@ onMounted(() => {
 watch(userInput, (newValue) => {
   filterBooks(newValue)
 })
+
+function readBook(index: number) {
+  books.value[index] = {
+    ...books.value[index],
+    read: !books.value[index]?.read ?? false,
+  }
+}
 </script>
 
 <template>
@@ -53,10 +61,11 @@ watch(userInput, (newValue) => {
         <th scope="col">Title</th>
         <th scope="col">Pages</th>
         <th scope="col">Cover</th>
+        <th scope="col">Read?</th>
       </tr>
     </thead>
     <tbody>
-      <BookListItem v-for="book in books" :key="book.isbn" v-bind="book" />
+      <BookListItem v-for="(book, index) in books" :key="book.isbn" v-bind="book" @read="readBook(index)" />
     </tbody>
   </table>
 </template>
