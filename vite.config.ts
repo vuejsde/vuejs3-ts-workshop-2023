@@ -13,6 +13,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
-    },
+    }
   },
+  base: '/vuejs3-ts-workshop-2023/'
 })

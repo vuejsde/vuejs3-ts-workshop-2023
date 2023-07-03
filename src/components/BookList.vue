@@ -2,7 +2,7 @@
 import BookListItem from './BookListItem.vue'
 import { useBooks } from '../composables/books';
 
-const { books, userInput } = useBooks('http://bookmonkey-read-only.onrender.com/books')
+const { books, userInput } = useBooks('https://bookmonkey-read-only.onrender.com/books')
 
 function readBook(index: number) {
   books.value[index] = {
