@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import ConfirmationDialog from './ConfirmationDialog.vue';
+import type { Book } from '../types';
 
 type Props = {
-  title: string;
-  isbn: string;
-  numPages?: number;
-  cover?: string;
+  title: Book['title'];
+  isbn: Book['isbn'];
+  numPages?: Book['numPages'];
+  cover?: Book['cover'];
   read?: boolean;
 }
 
