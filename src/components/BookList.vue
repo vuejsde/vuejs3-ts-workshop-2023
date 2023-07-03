@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { watch, ref, onMounted } from 'vue'
+import BookListItem from './BookListItem.vue'
 
 type Book = {
   id: string;
@@ -50,13 +51,12 @@ watch(userInput, (newValue) => {
       <tr>
         <th scope="col">ISBN</th>
         <th scope="col">Title</th>
+        <th scope="col">Pages</th>
+        <th scope="col">Cover</th>
       </tr>
     </thead>
     <tbody>
-      <tr v-for="book in books" :key="book.isbn">
-        <td>{{ book.isbn }}</td>
-        <td>{{ book.title }}</td>
-      </tr>
+      <BookListItem v-for="book in books" :key="book.isbn" v-bind="book" />
     </tbody>
   </table>
 </template>
