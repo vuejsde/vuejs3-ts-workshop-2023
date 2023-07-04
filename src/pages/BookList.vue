@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import BookListItem from './BookListItem.vue'
+import BookListItem from '../components/BookListItem.vue'
 import { useBooks } from '../composables/books';
 
 const { books, userInput } = useBooks('https://bookmonkey-read-only.onrender.com/books')
