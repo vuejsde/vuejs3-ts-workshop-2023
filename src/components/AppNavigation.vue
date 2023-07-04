@@ -4,16 +4,14 @@ import logo from '../assets/logo.png'
 
 type NavItem = {
   label: string;
-  link: string;
+  routeName: string;
 }
 
 const applicationName = ref('Bookmonkey API');
 const navigation = ref<NavItem[]>([{
-  label: 'Books', link: '/books',
+  label: 'Books', routeName: 'home',
 }, {
-  label: 'About', link: '/about',
-}, {
-  label: 'Login', link: '/login'
+  label: 'About', routeName: 'about',
 }])
 const transformedApplicationName = computed(() => applicationName.value.toUpperCase())
 </script>
@@ -26,7 +24,9 @@ const transformedApplicationName = computed(() => applicationName.value.toUpperC
       </li>
     </ul>
     <ul>
-      <li v-for="item in navigation" :key="item.link"><a :href="item.link">{{ item.label }}</a></li>
+      <li v-for="item in navigation" :key="item.routeName">
+        <RouterLink :to="{ name: item.routeName }" exact-active-class="contrast">{{ item.label }}</RouterLink>
+      </li>
     </ul>
   </nav>
 </template>
