@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { onMounted, ref, watch } from 'vue'
-import { onBeforeRouteLeave } from 'vue-router';
 import type { Book } from '../types'
 
 const props = defineProps<{
@@ -27,21 +26,15 @@ async function fetchBook(isbn: string) {
 onMounted(() => fetchBook(props.isbn as string))
 watch(() => props.isbn, (newIsbn) => fetchBook(newIsbn as string))
 
-onBeforeRouteLeave(() => {
-  return window.confirm('Do you really want to do that?');
-})
+
 </script>
 
 <template>
   <template v-if="isLoaded">
-    <template v-if="book">
-      <ul>
-        <li v-for="(value, key) in book" :key="key">
-          {{ key }}: {{ value }}
-        </li>
-      </ul>
-      <RouterLink role="button" :to="{ name: 'book-edit', params: { isbn } }">Edit</RouterLink>
-    </template>
+    <form v-if="book">
+      <label for="title">Title</label>
+      <input type="text" id="title" name="title" placeholder="Book Title" v-model.lazy.trim="book.title">
+    </form>
     <span v-else>
       We couldn't find any book with the ISBN <strong>{{ isbn }}</strong>
     </span>
