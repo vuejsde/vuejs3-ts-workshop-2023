@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { onMounted, ref, watch } from 'vue'
+import { onBeforeRouteLeave } from 'vue-router';
 import type { Book } from '../types'
 
 const { isbn } = defineProps<{
@@ -25,6 +26,13 @@ async function fetchBook(isbn: string) {
 
 onMounted(() => fetchBook(isbn as string))
 watch(() => isbn, (newIsbn) => fetchBook(newIsbn as string))
+
+onBeforeRouteLeave(() => {
+  const answer = window.confirm(
+    "Do you really want to leave? You have unsaved changes!"
+  )
+  return answer
+})
 </script>
 
 <template>
