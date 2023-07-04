@@ -1,7 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import BookList from './pages/BookList.vue'
+const BookList = () => import('./pages/BookList.vue')
+const BookDetail = () => import('./pages/BookDetail.vue')
 import AboutPage from './pages/AboutPage.vue'
-import BookDetail from './pages/BookDetail.vue'
 
 const router = createRouter({
   history: createWebHashHistory(),
