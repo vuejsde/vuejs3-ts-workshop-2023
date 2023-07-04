@@ -1,10 +1,12 @@
 <script lang="ts" setup>
 import { onMounted, ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
 import type { Book } from '../types'
 
+const props = defineProps<{
+  isbn: string
+}>()
+
 const book = ref<Book | null>(null)
-const route = useRoute()
 const isLoaded = ref(false)
 
 async function fetchBook(isbn: string) {
@@ -21,8 +23,8 @@ async function fetchBook(isbn: string) {
   isLoaded.value = true
 }
 
-onMounted(() => fetchBook(route.params.isbn as string))
-watch(() => route.params.isbn, (newIsbn) => fetchBook(newIsbn as string))
+onMounted(() => fetchBook(props.isbn as string))
+watch(() => props.isbn, (newIsbn) => fetchBook(newIsbn as string))
 </script>
 
 <template>
@@ -33,7 +35,7 @@ watch(() => route.params.isbn, (newIsbn) => fetchBook(newIsbn as string))
       </li>
     </ul>
     <span v-else>
-      We couldn't find any book with the ISBN <strong>{{ route.params.isbn }}</strong>
+      We couldn't find any book with the ISBN <strong>{{ isbn }}</strong>
     </span>
   </template>
 </template>
