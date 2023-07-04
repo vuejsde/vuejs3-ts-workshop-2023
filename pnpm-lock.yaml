@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 dependencies:
   vue:
     specifier: ^3.2.38
@@ -17,7 +21,7 @@ devDependencies:
     version: 16.11.56
   '@vitejs/plugin-vue':
     specifier: ^3.0.3
-    version: 3.0.3(vite@3.0.9)(vue@3.2.38)
+    version: 3.2.0(vite@3.0.9)(vue@3.2.38)
   '@vue/eslint-config-typescript':
     specifier: ^11.0.0
     version: 11.0.0(eslint-plugin-vue@9.3.0)(eslint@8.22.0)(typescript@4.7.4)
@@ -304,8 +308,8 @@ packages:
       eslint-visitor-keys: 3.4.1
     dev: true
 
-  /@vitejs/plugin-vue@3.0.3(vite@3.0.9)(vue@3.2.38):
-    resolution: {integrity: sha512-U4zNBlz9mg+TA+i+5QPc3N5lQvdUXENZLO2h0Wdzp56gI1MWhqJOv+6R+d4kOzoaSSq6TnGPBdZAXKOe4lXy6g==}
+  /@vitejs/plugin-vue@3.2.0(vite@3.0.9)(vue@3.2.38):
+    resolution: {integrity: sha512-E0tnaL4fr+qkdCNxJ+Xd0yM31UwMkQje76fsDVBBUCoGOUPexu2VDUYHL8P4CwV+zMvWw6nlRw19OnRKmYAJpw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: ^3.0.0
