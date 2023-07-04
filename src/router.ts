@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import BookList from './pages/BookList.vue'
 import AboutPage from './pages/AboutPage.vue'
+import BookDetail from './pages/BookDetail.vue'
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -13,6 +14,10 @@ const router = createRouter({
     path: '/about',
     component: AboutPage,
     name: 'about',
+  }, {
+    path: '/books/:isbn',
+    component: BookDetail,
+    name: 'book-detail',
   }],
 })
 

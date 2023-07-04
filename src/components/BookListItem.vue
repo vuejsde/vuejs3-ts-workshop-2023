@@ -33,7 +33,9 @@ function closeDialog() {
 
 <template>
   <tr>
-    <td>{{ isbn }}</td>
+    <td>
+      <RouterLink :to="{ name: 'book-detail', params: { isbn } }">{{ isbn }}</RouterLink>
+    </td>
     <td>{{ title }}</td>
     <td>{{ numPages }}</td>
     <td><img :src="cover" width="100" /></td>
