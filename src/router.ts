@@ -18,6 +18,7 @@ const router = createRouter({
     path: '/books/:isbn',
     component: BookDetail,
     name: 'book-detail',
+    props: true
   }],
 })
 
