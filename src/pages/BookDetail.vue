@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { onMounted, ref, watch } from 'vue'
+import { onBeforeRouteLeave } from 'vue-router';
 import type { Book } from '../types'
 
 const props = defineProps<{
@@ -25,6 +26,10 @@ async function fetchBook(isbn: string) {
 
 onMounted(() => fetchBook(props.isbn as string))
 watch(() => props.isbn, (newIsbn) => fetchBook(newIsbn as string))
+
+onBeforeRouteLeave(() => {
+  return window.confirm('Do you really want to do that?');
+})
 </script>
 
 <template>
