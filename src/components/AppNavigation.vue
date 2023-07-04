@@ -12,6 +12,8 @@ const navigation = ref<NavItem[]>([{
   label: 'Books', routeName: 'home',
 }, {
   label: 'About', routeName: 'about',
+}, {
+  label: 'Create', routeName: 'book-create',
 }])
 const transformedApplicationName = computed(() => applicationName.value.toUpperCase())
 </script>

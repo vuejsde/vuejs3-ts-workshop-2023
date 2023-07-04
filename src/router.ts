@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 const BookList = () => import('./pages/BookList.vue')
 const BookDetail = () => import('./pages/BookDetail.vue')
 const BookEdit = () => import('./pages/BookEdit.vue')
+const BookCreate = () => import('./pages/BookCreate.vue')
 import AboutPage from './pages/AboutPage.vue'
 
 const router = createRouter({
@@ -25,7 +26,11 @@ const router = createRouter({
     component: BookEdit,
     name: 'book-edit',
     props: true
-  }],
+  }, {
+    path: '/books/create',
+    component: BookCreate,
+    name: 'book-create',
+  },],
 })
 
 export default router;
