@@ -1,7 +1,11 @@
+<script setup lang="ts">
+const applicationName = 'Bookmonkey Vue'
+</script>
+
 <template>
   <nav>
     <ul>
-      <li><strong>Bookmonkey Vue</strong></li>
+      <li><strong>{{ applicationName.toUpperCase() }}</strong></li>
     </ul>
     <ul>
       <li><a href="#">Books</a></li>
