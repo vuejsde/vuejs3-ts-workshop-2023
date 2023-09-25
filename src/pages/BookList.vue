@@ -1,8 +1,12 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
+import { storeToRefs } from 'pinia'
 import BookListItem from '../components/BookListItem.vue'
-import { useBooks } from '../composables/books';
+import { useBooksStore } from '../stores/books'
 
-const { books, userInput } = useBooks('https://bookmonkey-read-only.onrender.com/books')
+const store = useBooksStore()
+const { books, userInput } = storeToRefs(store)
+const { getBooks } = store
 
 function readBook(index: number) {
   books.value[index] = {
@@ -10,6 +14,9 @@ function readBook(index: number) {
     read: !(books.value[index]?.read ?? false),
   }
 }
+
+onMounted(() => getBooks())
+
 </script>
 
 <template>

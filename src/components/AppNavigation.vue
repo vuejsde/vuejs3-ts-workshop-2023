@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import logo from '../assets/logo.png'
+import { storeToRefs } from 'pinia';
+import { useBooksStore } from '@/stores/books';
 
 type NavItem = {
   label: string;
@@ -16,6 +18,8 @@ const navigation = ref<NavItem[]>([{
   label: 'Create', routeName: 'book-create',
 }])
 const transformedApplicationName = computed(() => applicationName.value.toUpperCase())
+
+const { loadedBooks } = storeToRefs(useBooksStore())
 </script>
 
 <template>
@@ -23,6 +27,7 @@ const transformedApplicationName = computed(() => applicationName.value.toUpperC
     <ul>
       <li>
         <img :src="logo" :alt="transformedApplicationName" width="300" />
+        ({{ loadedBooks }})
       </li>
     </ul>
     <ul>
