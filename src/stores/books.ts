@@ -1,7 +1,9 @@
-import { watch, ref, onMounted } from 'vue'
+import { defineStore } from 'pinia'
+import { watch, ref, computed } from 'vue'
 import type { Book } from '../types'
 
-export function useBooks(url: string) {
+export const useBooksStore = defineStore('books', () => {
+  const url = "https://bookmonkey-read-only.onrender.com/books";
   const books = ref<Book[]>([])
   const isLoaded = ref(false)
 
@@ -17,22 +19,23 @@ export function useBooks(url: string) {
   }
 
   async function getBooks() {
+    userInput.value = ''
     const response = await fetch(`${url}?_start=0&_end=50`)
     books.value = await response.json() as Book[]
     isLoaded.value = true
   }
 
-  onMounted(() => {
-    getBooks()
-  })
-
   watch(userInput, (newValue) => {
     filterBooks(newValue)
   })
 
+  const loadedBooks = computed(() => books.value?.length ?? 0)
+
   return {
     books,
     isLoaded,
-    userInput
+    userInput,
+    getBooks,
+    loadedBooks,
   }
-}
+})
