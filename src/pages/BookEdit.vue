@@ -2,6 +2,7 @@
 import { onMounted, ref, watch } from 'vue'
 import type { Book } from '../types'
 import { required, minLength } from '../utils/validations'
+import { useRouter } from 'vue-router';
 
 type BookEditFields = keyof Pick<Book, 'title' | 'abstract' | 'author'>
 type FormErrors = Record<BookEditFields, string>
@@ -17,6 +18,8 @@ const errors = ref<FormErrors>({
   author: '',
   abstract: ''
 })
+
+const router = useRouter();
 
 async function fetchBook(isbn: string) {
   book.value = null;
@@ -39,13 +42,13 @@ async function fetchBook(isbn: string) {
 onMounted(() => fetchBook(props.isbn as string))
 watch(() => props.isbn, (newIsbn) => fetchBook(newIsbn as string))
 
-function submit() {
+async function submit() {
   if ((Object.keys(errors.value)).some(
     (val) => errors.value[val as BookEditFields] !== ""
   )) {
     console.log('Invalid form')
   } else {
-    fetch(
+    const response = await fetch(
       new Request(`https://bookmonkey-read-only.onrender.com/books/${props.isbn}`,
         {
           method: 'PUT',
@@ -56,6 +59,10 @@ function submit() {
         }
       )
     )
+
+    if (response.status === 200) {
+      router.push({ name: 'book-detail', params: { isbn: props.isbn } });
+    }
   }
 }
 
