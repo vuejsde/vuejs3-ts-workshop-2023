@@ -1,20 +1,7 @@
 <script setup lang="ts">
 import { watch, ref, onMounted } from 'vue'
 import BookListItem from './BookListItem.vue'
-
-type Book = {
-  id: string;
-  title: string;
-  subtitle: string;
-  isbn: string;
-  abstract: string;
-  author: string;
-  publisher: string;
-  price: string;
-  numPages: number;
-  cover: string;
-  userId: number;
-}
+import type { Book } from '@/types/book'
 
 const books = ref<Book[]>([])
 
@@ -56,7 +43,7 @@ watch(userInput, (newValue) => {
       </tr>
     </thead>
     <tbody>
-      <BookListItem v-for="book in books" :key="book.isbn" v-bind="book" />
+      <BookListItem v-for="book in books" :key="book.isbn" :book="book" />
     </tbody>
   </table>
 </template>

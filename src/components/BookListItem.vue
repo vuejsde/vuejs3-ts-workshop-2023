@@ -1,9 +1,8 @@
 <script setup lang="ts">
+import type { Book } from '@/types/book'
+
 type Props = {
-  title: string;
-  isbn: string;
-  numPages?: number;
-  cover?: string;
+  book: Book
 }
 
 defineProps<Props>()
@@ -11,9 +10,9 @@ defineProps<Props>()
 
 <template>
   <tr>
-    <td>{{ isbn }}</td>
-    <td>{{ title }}</td>
-    <td>{{ numPages }}</td>
-    <td><img :src="cover" width="100" /></td>
+    <td>{{ book.isbn }}</td>
+    <td>{{ book.title }}</td>
+    <td>{{ book.numPages }}</td>
+    <td><img :src="book.cover" width="100" /></td>
   </tr>
 </template>
