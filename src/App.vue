@@ -6,3 +6,12 @@ import AppNavigation from './components/AppNavigation.vue'
   <AppNavigation />
   <RouterView />
 </template>
+
+<style>
+.is-active {
+  color: white;
+  background-color: var(--primary);
+  padding: var(--form-element-spacing-vertical) var(--form-element-spacing-horizontal);
+  border-radius: var(--border-radius);
+}
+</style>

@@ -14,6 +14,7 @@ const router = createRouter({
     component: AboutPage,
     name: 'about',
   }],
+  linkExactActiveClass: 'is-active'
 })
 
 export default router;

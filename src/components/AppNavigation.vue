@@ -25,17 +25,8 @@ const transformedApplicationName = computed(() => applicationName.value.toUpperC
     </ul>
     <ul>
       <li v-for="item in navigation" :key="item.routeName">
-        <RouterLink :to="{ name: item.routeName }" exact-active-class="is-active">{{ item.label }}</RouterLink>
+        <RouterLink :to="{ name: item.routeName }">{{ item.label }}</RouterLink>
       </li>
     </ul>
   </nav>
 </template>
-
-<style>
-.is-active {
-  color: white;
-  background-color: var(--primary);
-  padding: var(--form-element-spacing-vertical) var(--form-element-spacing-horizontal);
-  border-radius: var(--border-radius);
-}
-</style>
