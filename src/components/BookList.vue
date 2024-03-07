@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { watch, ref, onMounted } from 'vue'
+import { onMounted, ref, watchEffect } from 'vue'
+import { watchDebounced } from '@vueuse/core'
 
 type Book = {
   id: string;
@@ -31,13 +32,25 @@ async function getBooks() {
   books.value = await response.json() as Book[]
 }
 
+// watchEffect solution
+// watchEffect(() => {
+//   const inputVal = userInput.value;
+
+//   if (inputVal) {
+//     filterBooks(inputVal);
+//   } else {
+//     getBooks();
+//   }
+// })
+
+// watchDebounced solution
 onMounted(() => {
   getBooks()
-})
+});
 
-watch(userInput, (newValue) => {
-  filterBooks(newValue)
-})
+watchDebounced(userInput, () => {
+  filterBooks(userInput.value);
+}, { debounce: 500, maxWait: 1000 },)
 </script>
 
 <template>
